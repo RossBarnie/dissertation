@@ -1,4 +1,4 @@
-main.pdf: main.tex ref.bib style.sty tex/*.tex
+main.pdf: main.tex ref.bib style.sty tex/*.tex img/*
 	pdflatex main.tex
 	bibtex main.aux
 	pdflatex main.tex
