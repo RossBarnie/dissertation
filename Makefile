@@ -1,4 +1,3 @@
-
 all: main.pdf
 
 main.pdf: main.tex ref.bib style.sty tex/*.tex img/*

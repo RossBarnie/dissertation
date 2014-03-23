@@ -9,4 +9,5 @@
 *.*~
 *.toc
 geanyProject
-*.sublime-project
+*.sublime*
+.gitignore
