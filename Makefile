@@ -1,9 +1,10 @@
+all: main.pdf
+
 main.pdf: main.tex ref.bib style.sty tex/*.tex
 	pdflatex main.tex
 	bibtex main.aux
 	pdflatex main.tex
 	pdflatex main.tex
-
 
 clean:
 	rm -f *.log
