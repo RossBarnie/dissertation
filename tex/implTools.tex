@@ -2,4 +2,57 @@ These differ from design tools in that these are tools not thought of during des
 
 \subsection{Dockerpy}
 \label{impl:dockerpy}
-Dockerpy \citep{dockerpy} is a python wrapper for docker functionality which was used in \emph{rmt} to interact with docker in the client application. 
+Dockerpy \citep{dockerpy} is a python wrapper for docker functionality which was used in \emph{rmt} to interact with docker in the client application.
+
+\subsection{MySQL}
+MySQL and the accompanying MySQLdb python module were used to create and manage the database for \emph{rmt}.
+This was used as a matter of personal preference over alternatives such as PostgreSQL \citep{postgresql} and because \verb%web.py%'s database module supports it.
+
+\subsection{Alternative Text Editors}
+During implementation it was clear that PyCharm was interfering with workflow in that its auto-indentation in HTML files was ignoring \verb%web.py%'s templating language.
+Since python and the aformentioned templating language are so dependent on indentation for scope, it was faster to develop these in an alternative text editor.
+Additionally when having to manipulate colours it was more beneficial to use a colour chooser than simply guess the hash values, so geany \citep{geany} was used to write some of the HTML files since it has a colour chooser built in and does not auto-indent.
+Additionally it is much more clear whether the indents are tabs or spaces, meaning there was little chance of interfering with the indents set by PyCharm.
+
+\subsection{Bootstrap}
+
+Bootstrap is a responsive front-end web framework designed to be used for web applications of all sizes and, thanks to the repsonsive element, can be viewed neatly on mobile devices.
+While it was not a requirement to view \emph{rmt} on mobile devices, these were catered for as much as possible in the design of \emph{rmt} so that the general public could view the application if they were on University grounds and connected to the public University wireless network.
+
+Bootstrap is also useful for reducing time spent working with CSS (Cascading Style Sheets) which determine the look and feel of a website as this can be tedious.
+With this framework however most of the work is already done and any additional styling can be added for requirements.
+
+For example in \emph{rmt} the list-group-item elements were altered to make the colours of states different to the panel headers and the additional class, \verb%list-group-item-dead% was added to represent a dead host, the code for which is as follows:
+
+\begin{lstlisting}[caption={style.css: list-group-item additions}]
+.list-group-item-dead {
+  color: #a1a1a1;
+  background-color: #A9A9A9;
+}
+a.list-group-item-dead {
+  color: #D9D9D9;
+}
+a.list-group-item-dead .list-group-item-heading {
+  color: inherit;
+}
+a.list-group-item-dead:hover,
+a.list-group-item-dead:focus {
+  color: #D9D9D9;
+  background-color: #919191;
+}
+a.list-group-item-dead.active,
+a.list-group-item-dead.active:hover,
+a.list-group-item-dead.active:focus {
+  color: #fff;
+  background-color: #919191;
+  border-color: #a1a1a1;
+}
+\end{lstlisting}
+
+\subsection{web.py}
+\verb%web.py% \citep{webpy} is a lightweight python web development framework.
+Being the only web framework advertised to be lightweight it had a distinct advantage over similar frameworks such as Django \citep{django} which was deemed too heavyweight to be useful to \emph{rmt}.
+The requirement to be as light as possible motivated this decision more than anything else.
+However while first looking for a framework this appeared to be well documented and appeared simple to use, very much unlike Django which follows very strict guidelines.
+
+It also allowed for rapid prototyping with very little code so file sizes could be kept to a minimum and designs could be deployed quickly and easily.
