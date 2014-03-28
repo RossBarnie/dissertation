@@ -1,8 +1,9 @@
 Most of the decisions regarding tools were made during implementation.
 However the following tools were made to aid the design process or were made prior to implementation.
-Those made during implementation are outlined in section [section reference to implementation tools].
+Those made during implementation are outlined in section \ref{sec:impltools}.
 
 \subsection{Trello}
+\label{sec:trello}
 Trello \citep{trello} is an organisational tool and while it is marketed as a tool to organise anything, it was created initially to organise teams in an office setting \citep{trellolaunch} with a group of contributors.
 However it is extremely useful as a project management tool, even for solo projects such as this.
 
@@ -59,6 +60,7 @@ PyCharm \citep{pycharm} is a Python Integrated Development Environment (IDE) wit
 	\item line and block commenting
 	\item real-time error highlighting
 	\item refactoring
+	\item remote execution/interpreters
 \end{itemize}
 This is not an exhaustive list, however these were the features most used in development of \emph{rmt}.
 Many of these features can be found in other editors but some, for example GNU Emacs \citeyearpar{emacs}, require setting up of plugins and given that \emph{rmt} would be developed in multiple locations it was very important to be able to easily replicate the development environment with as little configuration as possible.
@@ -69,3 +71,7 @@ Thus it was seen as a priority.
 
 Refactoring in PyCharm is very easy to use and proved useful on a number of occasions in the development of \emph{rmt}.
 It allows the developer to change all references to a symbol to something different with minimal input and works on anything from classes to variables.
+
+PyCharm also has remote execution built in.
+This allows the developer to use an interpreter on a remote host to run code from the local host, which was used when testing the client application on a Raspberry Pi.
+With the Raspbian installation on the Pi used in development having no GUI (which is also true of the hosts in the PiCloud) this was very useful to push code to the Pi without having to commit the code to the repository then pull it on the Pi, speeding up code testing.

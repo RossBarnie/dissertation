@@ -1,0 +1,45 @@
+Requirements were discussed in weekly meetings with the aforementioned product owner and supervisor of the project, David White.
+These requirements were then noted and added to the Trello page for the project, further discussed in section \ref{sec:trello}, and given a priority of one of: ``Must have'', ``Should have'', ``Could have'', ``Would like to have'', commonly known as the MoSCoW framework.
+
+\subsection{Must Have}
+\label{sec:musthave}
+\begin{description}
+	\item[Keep client daemon(s) lightweight] given the Raspberry Pi's lack of resources, any applications running should use as little resources as possible
+	\item[Monitor all hosts] the user should be able to monitor all 56 hosts
+	\item[``at-a-glance'' monitoring] the user should not have to scroll to view all 56 hosts
+	\item[Monitor resource usage of all hosts] the system should be able to display a given host's resource usage (RAM and CPU usage)
+	\item[Temperature monitoring] the system should display the temperature of a given host
+	\item[Delete a host] the user should be able to delete hosts from the system to stop monitoring it
+	\item[Server state persists after reboot] the system should remain the same after a reboot of Pi Master
+	\item[Heartbeat] the application should include some kind of heartbeat to indicate whether a host is turned on and responding
+\end{description}
+
+\subsection{Should Have}
+\label{sec:shouldhave}
+\begin{description}
+	\item[Reboot a host] the user should be able to reboot a host from the system
+	\item[View historical data] there should be some graphs to show the user historical data regarding resource usage and temperature
+	\item[Monitor resource usage of containers] monitoring the resources used by the containers
+\end{description}
+
+\subsection{Could Have}
+\label{sec:couldhave}
+\begin{description}
+	\item[Extensibility] the application should be extensible
+	\item[Scalability] the application should scale well to allow for additional hosts
+	\item[Secure login] the user should have to log in to view the application to allow for remote access and user privileges
+\end{description}
+
+\subsection{Would like to have}
+\label{sec:wouldhave}
+\begin{description}
+	\item[Non-monitoring container operations] any function related to containers that are not monitoring, such as:
+	\begin{itemize}
+		\item kill containers
+		\item restart containers
+		\item start containers
+		\item stop containers
+	\end{itemize}
+	\item[create container images remotely] containers need an image to be created from, this could be done remotely
+	\item[``nice'' website] the website should be user-friendly 
+\end{description}

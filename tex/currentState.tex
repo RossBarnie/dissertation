@@ -1,0 +1,25 @@
+Currently \emph{rmt} meets all of the ``Must Have'' requirements outlined in section \ref{sec:musthave}.
+Using python as the language may not be the fastest choice but it is lightweight, using little resources to run the client application thanks to the web.py framework.
+
+The user can view all of the hosts on a single page depending on their screen resolution.
+Development of \emph{rmt} was performed on a monitor with a 4:3 ratio and resolution of 1280x1024 and this was sufficient to display 56 hosts at a time.
+Having a screen height of less than 800 pixels may require some scrolling, though modern monitors rarely have less than this, particularly in 4:3 ratio monitors.
+
+``At-a-glance'' monitoring is accomplished through the heartbeat states, though is limited to showing simply whether a host is responding and any other information requires further navigation by the user.
+
+Resource usage and temperature monitoring is similarly affected in that it requires navigation to a host to view.
+
+Deleting and rebooting hosts is performed via buttons on the host page.
+
+Server state is persistent thank to use of the database for heartbeats and because other host-relevant information is gathered by request of the host page and not stored locally.
+
+The heartbeat requirement is fulfilled thanks to the heartbeat server and client discussed in section \ref{sec:heartbeat}.
+
+As the evaluation discussed in section [reference] %\ref{sec:evaluation}
+shows, the website is user-friendly and can therefore qualify as being a ``nice website''.
+
+With the MySQL database being the key storage of the system, it should be scalable at least to the 1000 hosts initially intended by the PiCloud project however this is untested.
+
+Extensibility is achieved in the sense that the code is readable, given the web.py framework's simple method of adding web-accessible methods, easy to follow.
+If someone were to want to extend the project by adding a page for example, they would simply have to add a URL mapping, a class to handle the URL, a GET method within this, and then design the content of the page with a HTML file in the templates folder.
+

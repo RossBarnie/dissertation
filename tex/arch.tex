@@ -1,4 +1,5 @@
-The architecture of \emph{rmt} is quite simple and a diagram showing the architecture can be seen in figure \ref{fig:arch} which will be referred to throughout this section.
+\label{sec:arch}
+A diagram showing the architecture can be seen in figure \ref{fig:arch} which will be referred to throughout this section.
 
 \begin{figure}[t]
 	\centering
@@ -20,7 +21,7 @@ There is no communication between \verb%rmt_client% and \verb%HeartbeatClient%.
 
 \subsection{Docker}
 The docker module seen in the architecture diagram is docker running on the client.
-Docker and its uses are explained in section [section reference to docker].
+Docker and its uses are explained in section \ref{sec:docker}.
 
 \subsection{rmt\_client}
 \label{sec:rmt_client}
@@ -59,6 +60,7 @@ This table contains the following fields:
 \end{description}
 
 \subsection{HeartbeatServer and HeartbeatClient}
+\label{sec:heartbeat}
 Both of these are not original to \emph{rmt} as they were retrieved from [link] and this is stated as such in the comments of the source code.
 However they were adapted for use in \emph{rmt}.
 
@@ -69,6 +71,7 @@ The number of seconds between each sent packet is configurable on HeartbeatClien
 This number must be a whole number, ie integer.
 
 \subsection{rmt\_server}
+\label{sec:rmt_server}
 
 In accordance with the \verb%web.py% framework \citep{webpy}, each web page is assigned a class and that class deals with the logic behind the request either by using the class's \verb%GET% or \verb%POST% method, depending on the type of HTTP request.
 The functions not defined as \verb%GET% or \verb%POST% are not exposed via a web interface and are simply regular python functions, following regular python scoping rules.
@@ -85,7 +88,7 @@ For example in the host class's \verb%GET% method, a dictionary is passed to the
 This allows for some entries to be non-existant, or \verb%None% value in python, which means that not all of the information has to be retrieved for the web page to be displayed, giving the application robustness.
 In the case that a \verb%None% value is found, this is translated in the template to a user-friendly output, as can be seen in the following code sample:
 
-\begin{lstlisting}[caption={Source code snippet from host.html template file}]
+\begin{lstlisting}[caption={Source code snippet from host.html template file}, label={lst:hostWebpy}]
 CPU (%)
 $if render['cpu_usage'] >= 0:
 	<span class="label label-$render['cpu_state']">
@@ -116,4 +119,4 @@ The values themselves are retrieved from the hosts via \verb%rmt_client%'s RESTf
 All database transactions are completed through a wrapper, rather than directly via URLs for example.
 This adds security to the application as it means there is no chance of someone performing database actions by accident or intentionally in the case of SQL injection.
 
-It also allows for other databases to be used with minimal change to the source code since the database can be initialised using a PostgreSQL \citep{postgresql} database instead of a MySQL one simply by changing the database constructor. ADD TO FUTURE WORK SECTION TO MAKE THIS CONFIGURABLE.
+It also allows for other databases to be used with minimal change to the source code since the database can be initialised using a PostgreSQL \citep{postgresql} database instead of a MySQL one simply by changing the database object constructor and possibly the database creation script.

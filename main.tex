@@ -5,22 +5,27 @@
 \begin{document}
 \maketitle
 \tableofcontents
-
+\listoffigures
 \input{./tex/ackn.tex}
 
+
+\pagenumbering{arabic}
 \chapter{Introduction}
 \input{./tex/intro.tex}
 
 \chapter{Context}
-\section{Other Systems}
-\subsection{Docker}
+\section{University of Southampton Raspberry Pi Supercomputer}
+\input{./tex/southampton.tex}
+\section{Docker}
 \input{./tex/docker.tex}
-\subsection{Shipyard}
+\section{Shipyard}
 \input{./tex/shipyard.tex}
 
 \chapter{Design}
 \section{Methodology}
 \input{./tex/scrum.tex}
+\section{Requirements Gathering}
+\input{./tex/reqs.tex}
 \section{Tools}
 \input{./tex/designtools.tex}
 \section{Website Design}
@@ -34,14 +39,16 @@
 \section{User Interface}
 \input{./tex/ui.tex}
 
-
-
 \chapter{Evaluation}
 
+
 \chapter{Conclusion}
-\section{Future Work}
-\section{``Journey''}
 \section{Problems Encountered}
+\input{./tex/problems.tex}
+\section{Current State}
+\input{./tex/currentState.tex}
+\section{Future Work}
+\input{./tex/future.tex}
 
 \bibliography{ref}
 

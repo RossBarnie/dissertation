@@ -1,0 +1,36 @@
+Throughout the development of \emph{rmt} many problems were encountered, some of which are outlined below.
+
+\subsection{Google Charts}
+
+Part of the reason the history graphs functionality was never completed was due to problems encountered when working with Google Charts \citeyearpar{googlecharts}.
+Some of the problems were to do with lack of understanding of JavaScript \citep{javascript} and jQuery \citep{jquery}.
+
+As explained in section \ref{rmt_server}, web.py's templating language uses the dollar sign (\$) as a signal to begin a statement.
+JQuery is also automatically included in each of the pages used by \emph{rmt} since it is used by Bootstrap.
+This proved problematic in a script designed to create a graph using Google Charts since it uses JavaScript and the dollar sign is jQuery shorthand to begin manipulating HTML elements.
+This conflict was not picked up by web.py's debug mode, nor by Firefox's web development tools \citep{firefoxdevtools}, so no error message was displayed, but no graph was displayed.
+
+After several failed attempts it was abandoned in favour of Flot \citep{flot}, which for reasons yet to reveal themselves, works even with the same dollar sign conflict problem as Google Charts.
+
+\subsection{Web.py forms and Bootstrap form styling}
+
+Using forms in web.py is relatively simple, as there are code samples on the web.py website explaining how to use them \citep{webpyform, webpyformfields}, however these do not include how to style individual fields, and neither does the API reference describing the web.py form class \citep{webpyformclass}.
+
+After many failed attempts at constructing the form in the python codebase rather than in the template, it was decided to attempt to create the form in the HTML template, then manipulate the results in the python codebase.
+This is now the form used in the add page.
+
+\subsection{Development location}
+
+Primarily the development of \emph{rmt} was completed at home and not at University of Glasgow's level 4 computing science laboratory for a number of reasons.
+
+\begin{itemize}
+	\item Root (administrator) access was required to run docker and allowing a student to have root access to the entire laboratory was out of the question, so programming the networking and docker-based functionality was far easier to do and test on a home network with full administrative privileges.
+	\item Docker was not installed on the computers in the level 4 lab, though admittedly due to the previous point this was never requested.
+	\item The disk space quota on the computers in the laboratory is limited and when trying to install modules it would fail due to lack of disk space, leading to wasted time trying to find items to delete.
+\end{itemize}
+
+Working from home was potentially not the only option available.
+Requests could have been made for root access to a small subnet of computers or perhaps a remote authentication to the PiCloud itself could have been arranged, however this was never requested.
+
+While it was the most convenient option it had a detrimental effect on ability to focus, as separating home life from university life proved problematic.
+More of this project could have been completed had development occurred in an environment more conducive to learning and productivity, and though it is accepted that this was not the only problem related to productivity, it was certainly the largest contributing factor.

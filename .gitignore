@@ -6,8 +6,8 @@
 *.log
 *.out
 *.pdf
+*.lof
 *.*~
 *.toc
 geanyProject
 *.sublime*
-.gitignore
