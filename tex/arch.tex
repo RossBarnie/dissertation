@@ -39,7 +39,24 @@ Given that docker functions must be run as the administrative user, root, on Lin
 This also allows the client to issue the reboot command.
 
 \subsection{MySQL Database}
-Possibly include at least some of the creation script here.
+The database for rmt consists of a single table representing a host named hosts.
+This table contains the following fields:
+
+%CREATE TABLE IF NOT EXISTS hosts (
+% 	id serial,
+% 	address varchar(64),
+% 	port int,
+% 	tower varchar(8),
+% 	last_contacted timestamp,
+% 	primary key (id)
+%);
+\begin{description}
+	\item[id] an integer to represent the unique identifier for this host (primary key)
+	\item[address] a varchar field to store the hostname or IP address of the host
+	\item[port] an integer to store the port of the host
+	\item[tower] a varchar to store the tower the host belongs to
+	\item[last\_contacted] a timestamp value representing the last time a heartbeat was received from the host
+\end{description}
 
 \subsection{HeartbeatServer and HeartbeatClient}
 Both of these are not original to \emph{rmt} as they were retrieved from [link] and this is stated as such in the comments of the source code.
@@ -82,7 +99,7 @@ $else:
 
 This shows how the template decides whether to show the left image or right image in figure \ref{fig:cpuGreenUnknown}, using \verb%web.py%'s templating language.
 The lines beginning with the dollar sign(\$) (lines 2 and 6) are essentially python, just written within the HTML file.
-So in this case, the code displays a Bootstrap label with its colour corresponding to its state (described in section....[reference]), or if it does not exist, displays a grey (label-default) label with ``Unknown'' within it.
+So in this case, the code displays a Bootstrap label with its colour corresponding to its state (described in section \ref{sec:hbstate}), or if it does not exist, displays a grey (label-default) label with ``Unknown'' within it.
 
 \begin{figure}[t]
 	\centering
