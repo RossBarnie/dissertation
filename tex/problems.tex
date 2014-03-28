@@ -5,9 +5,9 @@ Throughout the development of \emph{rmt} many problems were encountered, some of
 Part of the reason the history graphs functionality was never completed was due to problems encountered when working with Google Charts \citeyearpar{googlecharts}.
 Some of the problems were to do with lack of understanding of JavaScript \citep{javascript} and jQuery \citep{jquery}.
 
-As explained in section \ref{rmt_server}, web.py's templating language uses the dollar sign (\$) as a signal to begin a statement.
-JQuery is also automatically included in each of the pages used by \emph{rmt} since it is used by Bootstrap.
-This proved problematic in a script designed to create a graph using Google Charts since it uses JavaScript and the dollar sign is jQuery shorthand to begin manipulating HTML elements.
+As explained in section \ref{sec:rmt_server}, web.py's templating language uses the dollar sign (\$) as a signal to begin a statement.
+JQuery, which is automatically included in each of the pages used by \emph{rmt} since it is used by Bootstrap, also uses the dollar sign in its syntax.
+With Google Charts using JavaScript, there was a conflict between web.py's templating language and jQuery.
 This conflict was not picked up by web.py's debug mode, nor by Firefox's web development tools \citep{firefoxdevtools}, so no error message was displayed, but no graph was displayed.
 
 After several failed attempts it was abandoned in favour of Flot \citep{flot}, which for reasons yet to reveal themselves, works even with the same dollar sign conflict problem as Google Charts.

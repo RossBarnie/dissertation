@@ -1,12 +1,12 @@
 \subsection{Initial Design}
-During initial design meetings it was discussed that each host should have a graph representing the amount of resources (so, most likely CPU usage) each container is using on that host on the home page.
+During initial design meetings it was discussed that each host should have a graph representing the amount of resources each container is using on that host on the home page.
 
 However, it became clear from early drafts of this design, which can be seen in figure \ref{fig:initialDesign}, that this would not display enough hosts without the need for the user to scroll which violates the ``at-a-glance'' requirement of the tool.
 
 If the graphs were responsive, or calculating the values and updating the graphs in real time, it is expected that these graphs would require an unreasonable amount of load on the part of the client (the web browser accessing the website).
 This is especially true if the number of hosts were to be as high as initially intended by the PiCloud project.
 
-Additionally, there was no way of knowing, from a glance, which host belonged to which physical tower, which would be useful for diagnosis purposes, for example if a host was disconnected from its power supply. 
+Additionally, there was no way of knowing, from a glance, which host belonged to which physical tower, which would be useful for diagnostic purposes, for example if a host was disconnected from its power supply. 
 
 It is for these reasons that this design was abandoned.
 

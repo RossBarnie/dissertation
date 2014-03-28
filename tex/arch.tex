@@ -12,7 +12,7 @@ A diagram showing the architecture can be seen in figure \ref{fig:arch} which wi
 The PiMaster has the \verb%rmt_server% application running which serves the web pages and retrieves data from the MySQL database and instances of \verb%rmt_client%.
 PiMaster also has \verb%HeartbeatServer% running which listens on a specific port for messages from instances of \verb%HeartbeatClient%.
 
-\verb%rmt_server% sends requests to \verb%rmt_client% via a REST interface for various pieces of information, the details of which are explained further in section \ref{sec:rmt_client}.
+\verb%rmt_server% sends requests to \verb%rmt_client% via a REST interface \citep{rest} for various pieces of information, the details of which are explained further in section \ref{sec:rmt_client}.
 Both \verb%rmt_server% and \verb%rmt_client% are web servers, the difference in names is to differentiate the server application from the application meant to be run on the hosts.
 
 All of the Pi hosts have a software stack consisting of \verb%rmt_client%, \verb%HeartbeatClient%, and \verb%docker%.
@@ -26,14 +26,14 @@ Docker and its uses are explained in section \ref{sec:docker}.
 \subsection{rmt\_client}
 \label{sec:rmt_client}
 The name of this module is somewhat misleading in that it is not a client at all.
-It is actually a \verb%web.py% application and therefore a web server, exposing the following RESTful [need some references for REST] interface.
+It is actually a \verb%web.py% application and therefore a web server, exposing the following RESTful interface.
 
 \begin{description}
 	\item[GET /cpu] returns a \verb%json% object corresponding to the cpu usage of the host as a list of floating point numbers representing percentages of CPU used of the following format: [user, nice, system, idle, iowait, irq, softirq, steal, guest, guest\_nice].
 	\item[GET /ram] returns a \verb%json% object corresponding to the ram usage and total ram available in bits.
-	\item[GET /temperature] returns a \verb%json% object containing a string with the temperature in [units]
-	\item[GET /containers] returns a \verb%json% object containing the equivalent output to the terminal command, \verb%docker ps%, which lists all currently running containers
-	\item[GET /reboot] returns a \verb%json% object containing a message stating how many seconds it will be before a reboot takes place, and reboots the host
+	\item[GET /temperature] returns a \verb%json% object containing a string with the temperature expressed in millicentigrades.
+	\item[GET /containers] returns a \verb%json% object containing the equivalent output to the terminal command, \verb%docker ps%, which lists all currently running containers.
+	\item[GET /reboot] returns a \verb%json% object containing a message stating how many seconds it will be before a reboot takes place, and reboots the host.
 \end{description}
 
 Given that docker functions must be run as the administrative user, root, on Linux, \verb%rmt_client% itself must be run as root.
@@ -61,8 +61,8 @@ This table contains the following fields:
 
 \subsection{HeartbeatServer and HeartbeatClient}
 \label{sec:heartbeat}
-Both of these are not original to \emph{rmt} as they were retrieved from [link] and this is stated as such in the comments of the source code.
-However they were adapted for use in \emph{rmt}.
+Both of these are not original to \emph{rmt} as they were retrieved from \url{http://code.activestate.com/recipes/52302-pyheartbeat-detecting-inactive-computers/} and this is stated as such in the comments of the source code.
+However they were altered for use in \emph{rmt}.
 
 The HeartbeatServer component is listening on a particular (configurable) port for packets sent by HeartbeatClient.
 Once these packets are received, the HeartbeatServer updates the sending host's corresponding last\_contacted field in the hosts table of the database with the current time in a MySQL compatible format.
@@ -86,7 +86,7 @@ To make this more extensible, \emph{rmt} uses a dictionary object to pass variab
 
 For example in the host class's \verb%GET% method, a dictionary is passed to the template with the temperature, RAM usage, CPU usage, among others.
 This allows for some entries to be non-existant, or \verb%None% value in python, which means that not all of the information has to be retrieved for the web page to be displayed, giving the application robustness.
-In the case that a \verb%None% value is found, this is translated in the template to a user-friendly output, as can be seen in the following code sample:
+In the case that a \verb%None% value is found, such as when a request is made to a host not running \verb%rmt_client%, this is translated in the template to a user-friendly output, as can be seen in the following code sample:
 
 \begin{lstlisting}[caption={Source code snippet from host.html template file}, label={lst:hostWebpy}]
 CPU (%)
@@ -116,7 +116,7 @@ The values themselves are retrieved from the hosts via \verb%rmt_client%'s RESTf
 
 \subsection{Database Layer}
 
-All database transactions are completed through a wrapper, rather than directly via URLs for example.
-This adds security to the application as it means there is no chance of someone performing database actions by accident or intentionally in the case of SQL injection.
+All database operations are completed through a wrapper, rather than directly via URLs for example.
+This adds security to the application as it mitigates the chance of someone performing database actions by accident or intentionally in the case of SQL injection \citep{sqlinjection}.
 
-It also allows for other databases to be used with minimal change to the source code since the database can be initialised using a PostgreSQL \citep{postgresql} database instead of a MySQL one simply by changing the database object constructor and possibly the database creation script.
+It also allows for other databases to be used with minimal change to the source code since the database can be initialised using a PostgreSQL \citep{postgresql} database instead of a MySQL one simply by changing the database object constructor and possibly the database creation script, described further in section \ref{sec:future}.

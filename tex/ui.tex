@@ -37,7 +37,7 @@ A state diagram showing this flow can be seen in figure \ref{fig:hbstate}.
 
 Adding hosts is no longer on the home page to make room for more hosts and because adding a host is not such a common operation that it needs to be on the home page.
 In the case of PiCloud the add host form should be used to add the hosts to their corresponding towers and then left alone indefinitely until more Raspberry Pis are added to the PiCloud for example.
-So instead of having the form on the home page, the form is on a separate page accessed by the plus icon in the top left of the home page (see figure \ref{fig:rmtCurrent}).
+So instead of having the form on the home page, the form is on a separate page accessed by the plus icon in the top right of the home page (see figure \ref{fig:rmtCurrent}).
 
 Next to this are links to the PiCloud website, since they were the ones to request the creation of this software, and a link to the GitHub page of \emph{rmt} since, as previously stated, the project will be made open source, and this provides an easy way for the user to find, and potentially contribute to, the project.
 
@@ -82,5 +82,7 @@ By making the header, ``Host'', the user is reminded of where they are in the co
 This includes the port of the client because there could feasibly be more than one client running on the same host.
 This is entirely up to the systems administrator of the hosts but having more than one running instance of \verb%rmt_client% could add some redundancy to the host.
 
-Buttons throughout the system are represented by Bootstrap's \verb%btn-info% class which is a light blue colour, making it visually distinctive to the status labels for CPU, RAM, and Temperature indicators, and the heartbeat states described earlier.
+Labels throughout the system follow a colour scheme similar to that of the heartbeat states described earlier and are similarly configurable.
+
+Buttons throughout the system are represented by Bootstrap's \verb%btn-info% class which is a light blue colour, making it visually distinctive to the status labels for CPU, RAM, and Temperature indicators, and the heartbeat states.
 

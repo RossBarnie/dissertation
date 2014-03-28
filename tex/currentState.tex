@@ -11,15 +11,14 @@ Resource usage and temperature monitoring is similarly affected in that it requi
 
 Deleting and rebooting hosts is performed via buttons on the host page.
 
-Server state is persistent thank to use of the database for heartbeats and because other host-relevant information is gathered by request of the host page and not stored locally.
+Server state is persistent thanks to use of the database for heartbeats and because other host-relevant information is gathered by direct requests to hosts and not stored locally.
 
 The heartbeat requirement is fulfilled thanks to the heartbeat server and client discussed in section \ref{sec:heartbeat}.
 
-As the evaluation discussed in section [reference] %\ref{sec:evaluation}
+As the evaluation discussed in chapter \ref{sec:evaluation}
 shows, the website is user-friendly and can therefore qualify as being a ``nice website''.
 
 With the MySQL database being the key storage of the system, it should be scalable at least to the 1000 hosts initially intended by the PiCloud project however this is untested.
 
-Extensibility is achieved in the sense that the code is readable, given the web.py framework's simple method of adding web-accessible methods, easy to follow.
+Extensibility is achieved in the sense that the code is readable, and, given the web.py framework's simple method of adding web-accessible methods, easy to follow.
 If someone were to want to extend the project by adding a page for example, they would simply have to add a URL mapping, a class to handle the URL, a GET method within this, and then design the content of the page with a HTML file in the templates folder.
-

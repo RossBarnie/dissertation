@@ -7,13 +7,13 @@ Dockerpy \citep{dockerpy} is a python wrapper for docker functionality which was
 
 \subsection{MySQL}
 MySQL and the accompanying MySQLdb python module were used to create and manage the database for \emph{rmt}.
-This was used as a matter of personal preference over alternatives such as PostgreSQL \citep{postgresql} and because \verb%web.py%'s database module supports it.
+This was used as a matter of personal preference over alternatives such as PostgreSQL and because \verb%web.py%'s database module supports it.
 
 \subsection{Alternative Text Editors}
 During implementation it was clear that PyCharm was interfering with workflow in that its auto-indentation in HTML files was ignoring \verb%web.py%'s templating language.
 Since python and the aformentioned templating language are so dependent on indentation for scope, it was faster to develop these in an alternative text editor.
 Additionally when having to manipulate colours it was more beneficial to use a colour chooser than simply guess the hash values, so geany \citep{geany} was used to write some of the HTML files since it has a colour chooser built in and does not auto-indent.
-Additionally it is much more clear whether the indents are tabs or spaces, meaning there was little chance of interfering with the indents set by PyCharm.
+Geany also makes it clear whether the indents are tabs or spaces, meaning there was little chance of interfering with the indents set by PyCharm.
 
 \subsection{Bootstrap}
 
@@ -23,7 +23,7 @@ While it was not a requirement to view \emph{rmt} on mobile devices, these were 
 Bootstrap is also useful for reducing time spent working with CSS (Cascading Style Sheets) which determine the look and feel of a website as this can be tedious.
 With this framework however most of the work is already done and any additional styling can be added for requirements.
 
-For example in \emph{rmt} the list-group-item elements were altered to make the colours of states different to the panel headers and the additional class, \verb%list-group-item-dead% was added to represent a dead host, the code for which is as follows:
+For example in \emph{rmt} the list-group-item elements were altered to make the colours of states different to the panel headers and the additional class, \verb%list-group-item-dead% was added to represent a dead host, the source for which is as follows:
 
 \begin{lstlisting}[caption={style.css: list-group-item additions}]
 .list-group-item-dead {
